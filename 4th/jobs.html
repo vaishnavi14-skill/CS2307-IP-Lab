@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Available Jobs</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+body{
+background:#f2f2f2;
+}
+/* Navigation */
+header{
+background:#003366;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+header h2{
+color:white;
+}
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+nav a:hover{
+color:yellow;
+}
+/* Search */
+.search{
+text-align:center;
+margin:30px;
+}
+.search input{
+padding:10px;
+width:300px;
+border:1px solid gray;
+border-radius:5px;
+}
+.search button{
+padding:10px 20px;
+background:#003366;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+.search button:hover{
+background:#0055aa;
+}
+/* Table */
+h2{
+text-align:center;
+margin-bottom:20px;
+color:#003366;
+}
+table{
+width:90%;
+margin:auto;
+border-collapse:collapse;
+background:white;
+}
+table,th,td{
+border:1px solid gray;
+}
+th{
+background:#003366;
+color:white;
+padding:12px;
+}
+td{
+padding:12px;
+text-align:center;
+}
+.apply{
+background:green;
+color:white;
+padding:8px 15px;
+text-decoration:none;
+border-radius:5px;
+}
+.apply:hover{
+background:darkgreen;
+}
+footer{
+margin-top:40px;
+background:#003366;
+color:white;
+text-align:center;
+padding:20px;
+}
+</style>
+</head>
+<body>
+<header>
+<h2>CareerConnect</h2>
+<nav>
+<a href="index.html">Home</a>
+<a href="register.html">Register</a>
+<a href="login.html">Login</a>
+</nav>
+</header>
+<div class="search">
+<input type="text" placeholder="Search Job">
+<button>Search</button>
+</div>
+<h2>Available Jobs</h2>
+<table>
+<tr>
+<th>Job Title</th>
+<th>Company</th>
+<th>Location</th>
+<th>Salary</th>
+<th>Apply</th>
+</tr>
+<tr>
+<td>Java Developer</td>
+<td>Infosys</td>
+<td>Chennai</td>
+<td>₹5 LPA</td>
+<td><a href="#" class="apply">Apply</a></td>
+</tr>
+<tr>
+<td>Python Developer</td>
+<td>TCS</td>
+<td>Bangalore</td>
+<td>₹6 LPA</td>
+<td><a href="#" class="apply">Apply</a></td>
+</tr>
+<tr>
+<td>Frontend Developer</td>
+<td>Wipro</td>
+<td>Hyderabad</td>
+<td>₹4.8 LPA</td>
+<td><a href="#" class="apply">Apply</a></td>
+</tr>
+<tr>
+<td>Software Engineer</td>
+<td>Google</td>
+<td>Bangalore</td>
+<td>₹12 LPA</td>
+<td><a href="#" class="apply">Apply</a></td>
+</tr>
+<tr>
+<td>Data Analyst</td>
+<td>Amazon</td>
+<td>Hyderabad</td>
+<td>₹8 LPA</td>
+<td><a href="#" class="apply">Apply</a></td>
+</tr>
+<tr>
+<td>UI/UX Designer</td>
+<td>Microsoft</td>
+<td>Noida</td>
+<td>₹7 LPA</td>
+<td><a href="#" class="apply">Apply</a></td>
+</tr>
+</table>
+<footer>
+<p>CareerConnect Job Portal</p>
+<p>Email: careerconnect@gmail.com</p>
+<p>Phone: +91 9876543210</p>
+<p>&copy; 2026 CareerConnect. All Rights Reserved.</p>
+</footer>
+</body>
+</html>
