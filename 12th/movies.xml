@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movies>
+<movie>
+<title>Leo</title>
+<actor>Vijay</actor>
+<director>Lokesh Kanagaraj</director>
+<year>2023</year>
+<rating>8.0</rating>
+</movie>
+<movie>
+<title>Jailer</title>
+<actor>Rajinikanth</actor>
+<director>Nelson Dilipkumar</director>
+<year>2023</year>
+<rating>7.1</rating>
+</movie>
+<movie>
+<title>Vikram</title>
+<actor>Kamal Haasan</actor>
+<director>Lokesh Kanagaraj</director>
+<year>2022</year>
+<rating>8.4</rating>
+</movie>
+<movie>
+<title>Master</title>
+<actor>Vijay</actor>
+<director>Lokesh Kanagaraj</director>
+<year>2021</year>
+<rating>7.8</rating>
+</movie>
+<movie>
+<title>96</title>
+<actor>Vijay Sethupathi</actor>
+<director>C. Prem Kumar</director>
+<year>2018</year>
+<rating>8.5</rating>
+</movie>
+<movie>
+<title>Soorarai Pottru</title>
+<actor>Suriya</actor>
+<director>Sudha Kongara</director>
+<year>2020</year>
+<rating>8.7</rating>
+</movie>
+<movie>
+<title>Kaithi</title>
+<actor>Karthi</actor>
+<director>Lokesh Kanagaraj</director>
+<year>2019</year>
+<rating>8.4</rating>
+</movie>
+<movie>
+<title>Vada Chennai</title>
+<actor>Dhanush</actor>
+<director>Vetrimaaran</director>
+<year>2018</year>
+<rating>8.6</rating>
+</movie>
+<movie>
+<title>Ratsasan</title>
+<actor>Vishnu Vishal</actor>
+<director>Ram Kumar</director>
+<year>2018</year>
+<rating>8.3</rating>
+</movie>
+<movie>
+<title>Parking</title>
+<actor>Harish Kalyan</actor>
+<director>Ramkumar Balakrishnan</director>
+<year>2023</year>
+<rating>8.0</rating>
+</movie>
+</movies>

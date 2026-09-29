@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Seeker Registration</title>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1920&q=80") no-repeat center center fixed;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    padding:30px;
+}
+.form-box{
+    width:430px;
+    background:rgba(255,255,255,0.93);
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+.logo{
+    text-align:center;
+    margin-bottom:15px;
+}
+.logo img{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+}
+h2{
+    text-align:center;
+    color:#333;
+}
+label{
+    display:block;
+    margin-top:12px;
+    font-weight:bold;
+}
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    box-sizing:border-box;
+}
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#2d6cdf;
+    outline:none;
+    box-shadow:0 0 6px rgba(45,108,223,.4);
+}
+.error{
+    color:red;
+    font-size:13px;
+    margin-top:3px;
+}
+.buttons{
+    display:flex;
+    gap:10px;
+}
+button{
+    flex:1;
+    margin-top:20px;
+    padding:10px;
+    background:#2d6cdf;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+button:hover{
+    background:#1e54b7;
+}
+.reset-btn{
+    background:#666;
+}
+
+.reset-btn:hover{
+    background:#444;
+}
+
+footer{
+    margin-top:20px;
+    text-align:center;
+    font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="form-box">
+
+   
+
+    <h2>Job Seeker Registration</h2>
+
+    <form id="registrationForm" action="register.jsp" method="post" novalidate>
+
+
+        <!-- User Name -->
+        <label>User Name *</label>
+        <input type="text" id="username" name="username" 
+               placeholder="Enter username">
+        <div class="error" id="usernameError"></div>
+
+
+        <!-- Full Name -->
+        <label>First Name *</label>
+        <input type="text" id="fullName" name="fullName"
+               placeholder="Enter your full name" maxlength="50">
+        <div class="error" id="fullNameError"></div>
+
+
+        <!-- Name -->
+        <label>Last Name *</label>
+        <input type="text" id="name" name="name"
+               placeholder="Enter your name">
+        <div class="error" id="nameError"></div>
+
+
+        <!-- Email -->
+        <label>Email *</label>
+        <input type="text" id="email" name="email"
+               placeholder="Enter your email">
+        <div class="error" id="emailError"></div>
+
+
+        <!-- Phone -->
+        <label>Phone Number *</label>
+        <input type="text" id="phone" name="phone"
+               placeholder="10 digit phone number">
+        <div class="error" id="phoneError"></div>
+
+
+        <!-- Password -->
+        <label>Password *</label>
+        <input type="password" id="password" name="password"
+               placeholder="At least 6 characters">
+        <div class="error" id="passwordError"></div>
+
+
+        <!-- Credit Card -->
+        <label>Credit Card Number *</label>
+        <input type="text" id="ccnumber" name="ccnumber"
+               placeholder="Enter credit card number"
+               maxlength="19">
+        <div class="error" id="ccnumberError"></div>
+
+
+        <!-- Gender -->
+        <label>Gender</label>
+        <select id="gender" name="gender">
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+
+        <!-- Date of Birth -->
+        <label>Date of Birth</label>
+        <input type="date" id="dob" name="dob">
+
+
+        <!-- Qualification -->
+        <label>Qualification</label>
+        <select id="qualification" name="qualification">
+            <option>B.E/B.Tech</option>
+            <option>B.Sc</option>
+            <option>MCA</option>
+            <option>Other</option>
+        </select>
+
+
+        <!-- Job Title -->
+        <label>Desired Job Title *</label>
+        <input type="text" id="jobTitle" name="jobTitle"
+               placeholder="Web Developer">
+        <div class="error" id="jobTitleError"></div>
+
+
+        <!-- Experience -->
+        <label>Years of Experience *</label>
+        <input type="number" id="experience" name="experience">
+        <div class="error" id="experienceError"></div>
+
+
+        <!-- Skills -->
+        <label>Skills</label>
+        <textarea id="skills" name="skills" rows="3"
+                  placeholder="HTML, CSS, JavaScript"></textarea>
+
+
+        <!-- LinkedIn -->
+        <label>LinkedIn ID *</label>
+        <input type="text" id="resumeLink" name="resumeLink"
+               placeholder="Enter your LinkedIn ID">
+        <div class="error" id="resumeLinkError"></div>
+
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <button type="submit">Register</button>
+            <button type="reset" class="reset-btn">Reset</button>
+        </div>
+
+    </form>
+
+
+    <footer>
+        © 2026 CareerConnect Job Portal
+    </footer>
+
+</div>
+
+
+<script>
+
+document.getElementById("registrationForm").addEventListener("submit", function(e){
+
+    let isValid = true;
+
+    // Clear previous errors
+    document.querySelectorAll(".error").forEach(function(x){
+        x.textContent = "";
+    });
+
+
+    // Patterns
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^[0-9]{10}$/;
+    const cardPattern = /^[0-9]{13,19}$/;
+
+
+    // Username validation
+    if(username.value.trim() == ""){
+        usernameError.textContent = "Username is required.";
+        isValid = false;
+    }
+
+
+    // Full Name validation
+    if(fullName.value.trim() == ""){
+        fullNameError.textContent = "Full name is required.";
+        isValid = false;
+    }
+
+
+    // Name validation
+    if(name.value.trim() == ""){
+        nameError.textContent = "Name is required.";
+        isValid = false;
+    }
+
+
+    // Email validation
+    if(email.value.trim() == ""){
+        emailError.textContent = "Email is required.";
+        isValid = false;
+    }
+    else if(!emailPattern.test(email.value.trim())){
+        emailError.textContent = "Please enter a valid email.";
+        isValid = false;
+    }
+
+
+    // Phone validation
+    if(phone.value.trim() == ""){
+        phoneError.textContent = "Phone number is required.";
+        isValid = false;
+    }
+    else if(!phonePattern.test(phone.value.trim())){
+        phoneError.textContent = "Enter a valid 10 digit phone number.";
+        isValid = false;
+    }
+
+
+    // Password validation
+    if(password.value == ""){
+        passwordError.textContent = "Password is required.";
+        isValid = false;
+    }
+    else if(password.value.length < 6){
+        passwordError.textContent = "Password must be at least 6 characters.";
+        isValid = false;
+    }
+
+
+    // Credit Card validation
+    if(ccnumber.value.trim() == ""){
+        ccnumberError.textContent = "Credit card number is required.";
+        isValid = false;
+    }
+    else if(!cardPattern.test(ccnumber.value.trim())){
+        ccnumberError.textContent = 
+        "Enter valid credit card number (13-19 digits).";
+        isValid = false;
+    }
+
+
+    // Job Title validation
+    if(jobTitle.value.trim() == ""){
+        jobTitleError.textContent = 
+        "Desired job title is required.";
+        isValid = false;
+    }
+
+
+    // Experience validation
+    if(experience.value == "" || experience.value < 0){
+        experienceError.textContent = "Enter valid experience.";
+        isValid = false;
+    }
+
+
+    // LinkedIn validation
+    if(resumeLink.value.trim() == ""){
+        resumeLinkError.textContent = "LinkedIn ID is required.";
+        isValid = false;
+    }
+
+
+    // Prevent submission if validation fails
+    if(!isValid){
+        e.preventDefault();
+    }
+
+});
+
+</script>
+
+</body>
+</html>

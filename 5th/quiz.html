@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Internet Programming Quiz</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+    margin: 0;
+    padding: 40px 20px;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            rgba(15, 23, 42, 0.60),
+            rgba(30, 41, 59, 0.60)
+        ),
+        url("https://img.magnific.com/free-vector/studio-background-with-lights_1017-3580.jpg?semt=ais_hybrid&w=740&q=80");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+        .quiz {
+    width: 700px;
+    max-width: 95%;
+
+    margin: auto;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.30);
+
+    position: relative;
+    z-index: 2;
+}
+
+        .header {
+            text-align: center;
+
+            margin-bottom: 20px;
+        }
+
+        .header-title {
+            color: #2563eb;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            color: #172554;
+
+            font-size: 30px;
+
+            margin: 8px 0;
+        }
+
+        .subtitle {
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+        .student-info {
+            background: #eff6ff;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid #dbeafe;
+        }
+
+        .student-info p {
+            margin: 6px 0;
+
+            color: #334155;
+
+            font-size: 14px;
+        }
+
+        .student-info strong {
+            color: #1e3a8a;
+        }
+
+        .progress-box {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            margin: 20px 0;
+
+            flex-wrap: wrap;
+        }
+
+        .progress-box span {
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .question {
+            background: #f8fafc;
+
+            margin-bottom: 12px;
+
+            padding: 16px;
+
+            border-radius: 10px;
+
+            border-left: 4px solid #2563eb;
+        }
+
+        .question b {
+            display: block;
+
+            color: #172554;
+
+            margin-bottom: 8px;
+
+            font-size: 15px;
+        }
+
+        .question label {
+            display: block;
+
+            padding: 5px 8px;
+
+            margin: 2px 0;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            color: #475569;
+
+            font-size: 14px;
+        }
+
+        .question label:hover {
+            background: #dbeafe;
+
+            color: #1d4ed8;
+        }
+
+        .question input[type="radio"] {
+            margin-right: 8px;
+
+            accent-color: #2563eb;
+        }
+
+        .question input[type="text"] {
+            width: 100%;
+
+            max-width: 450px;
+
+            padding: 10px;
+
+            border: 1px solid #94a3b8;
+
+            border-radius: 6px;
+
+            outline: none;
+        }
+
+        .submit {
+            text-align: center;
+
+            margin-top: 20px;
+        }
+
+        .submit input {
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            padding: 12px 40px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .submit input:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 15px
+                rgba(37,99,235,0.3);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="quiz">
+
+    <div class="header">
+
+        <div class="header-title">
+            ONLINE EXAMINATION
+        </div>
+
+        <h1>
+            Internet Programming Quiz
+        </h1>
+
+        <div class="subtitle">
+            Answer all the questions
+        </div>
+
+    </div>
+
+
+    <!-- STUDENT DETAILS -->
+
+    <div class="student-info">
+
+        <p>
+            <strong>Name:</strong>
+            <span id="displayName"></span>
+        </p>
+
+        <p>
+            <strong>Roll Number:</strong>
+            <span id="displayRoll"></span>
+        </p>
+
+        <p>
+            <strong>Register Number:</strong>
+            <span id="displayReg"></span>
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            <span id="displayEmail"></span>
+        </p>
+
+    </div>
+
+
+    <div class="progress-box">
+
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+        <span>9</span>
+        <span>10</span>
+
+    </div>
+
+
+    <form action="ExamServlet" method="post">
+
+        <!-- Hidden student details -->
+
+        <input type="hidden" name="username" id="username">
+        <input type="hidden" name="rollno" id="rollno">
+        <input type="hidden" name="regno" id="regno">
+        <input type="hidden" name="email" id="email">
+
+
+        <!-- Q1 -->
+
+        <div class="question">
+
+            <b>
+                1. What does HTML stand for?
+            </b>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q1"
+                    value="Hyper Text Markup Language"
+                    required>
+
+                Hyper Text Markup Language
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q1"
+                    value="High Text Machine Language">
+
+                High Text Machine Language
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q1"
+                    value="Hyper Tool Markup Language">
+
+                Hyper Tool Markup Language
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q1"
+                    value="Home Text Markup Language">
+
+                Home Text Markup Language
+            </label>
+
+        </div>
+
+
+        <!-- Q2 -->
+
+        <div class="question">
+
+            <b>
+                2. Which tag is used to create a hyperlink?
+            </b>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q2"
+                    value="a"
+                    required>
+
+                &lt;a&gt;
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q2"
+                    value="p">
+
+                &lt;p&gt;
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q2"
+                    value="h1">
+
+                &lt;h1&gt;
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q2"
+                    value="link">
+
+                &lt;link&gt;
+            </label>
+
+        </div>
+
+
+        <!-- Q3 -->
+
+        <div class="question">
+
+            <b>
+                3. Which language is used to style HTML pages?
+            </b>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q3"
+                    value="CSS"
+                    required>
+
+                CSS
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q3"
+                    value="Java">
+
+                Java
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q3"
+                    value="Python">
+
+                Python
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q3"
+                    value="SQL">
+
+                SQL
+            </label>
+
+        </div>
+
+
+        <!-- Q4 -->
+
+        <div class="question">
+
+            <b>
+                4. Which tag is used to insert an image?
+            </b>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q4"
+                    value="img"
+                    required>
+
+                &lt;img&gt;
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q4"
+                    value="image">
+
+                &lt;image&gt;
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q4"
+                    value="src">
+
+                &lt;src&gt;
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q4"
+                    value="pic">
+
+                &lt;pic&gt;
+            </label>
+
+        </div>
+
+
+        <!-- Q5 -->
+
+        <div class="question">
+
+            <b>
+                5. Which symbol is used for an ID selector in CSS?
+            </b>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q5"
+                    value="#"
+                    required>
+
+                #
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q5"
+                    value=".">
+
+                .
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q5"
+                    value="*">
+
+                *
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q5"
+                    value="@">
+
+                @
+            </label>
+
+        </div>
+
+
+        <!-- Q6 -->
+
+        <div class="question">
+
+            <b>
+                6. Which language is used to make web pages interactive?
+            </b>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q6"
+                    value="JavaScript"
+                    required>
+
+                JavaScript
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q6"
+                    value="HTML">
+
+                HTML
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q6"
+                    value="CSS">
+
+                CSS
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q6"
+                    value="SQL">
+
+                SQL
+            </label>
+
+        </div>
+
+
+        <!-- Q7 -->
+
+        <div class="question">
+
+            <b>
+                7. Which method is used to send form data?
+            </b>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q7"
+                    value="POST"
+                    required>
+
+                POST
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q7"
+                    value="GET">
+
+                GET
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q7"
+                    value="SEND">
+
+                SEND
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q7"
+                    value="PUT">
+
+                PUT
+            </label>
+
+        </div>
+
+
+        <!-- Q8 -->
+
+        <div class="question">
+
+            <b>
+                8. Which HTML tag is used for a paragraph?
+            </b>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q8"
+                    value="p"
+                    required>
+
+                &lt;p&gt;
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q8"
+                    value="para">
+
+                &lt;para&gt;
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q8"
+                    value="text">
+
+                &lt;text&gt;
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="q8"
+                    value="pg">
+
+                &lt;pg&gt;
+            </label>
+
+        </div>
+
+
+        <!-- Q9 -->
+
+        <div class="question">
+
+            <b>
+                9. Which protocol is used for web communication?
+            </b>
+
+            <input
+                type="text"
+                name="q9"
+                placeholder="Type your answer"
+                required>
+
+        </div>
+
+
+        <!-- Q10 -->
+
+        <div class="question">
+
+            <b>
+                10. Which HTML tag is used to create a table row?
+            </b>
+
+            <input
+                type="text"
+                name="q10"
+                placeholder="Type your answer"
+                required>
+
+        </div>
+
+
+        <div class="submit">
+
+            <input
+                type="submit"
+                value="Submit Quiz">
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<script>
+
+    const params = new URLSearchParams(
+        window.location.search
+    );
+
+    const username = params.get("username") || "";
+    const rollno = params.get("rollno") || "";
+    const regno = params.get("regno") || "";
+    const email = params.get("email") || "";
+
+
+    document.getElementById("displayName").textContent =
+        username;
+
+    document.getElementById("displayRoll").textContent =
+        rollno;
+
+    document.getElementById("displayReg").textContent =
+        regno;
+
+    document.getElementById("displayEmail").textContent =
+        email;
+
+
+    document.getElementById("username").value =
+        username;
+
+    document.getElementById("rollno").value =
+        rollno;
+
+    document.getElementById("regno").value =
+        regno;
+
+    document.getElementById("email").value =
+        email;
+
+</script>
+
+</body>
+</html>
